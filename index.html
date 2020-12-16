@@ -60,7 +60,7 @@
     <div class="wrapper">
         <div class="connect">
             <h3 class="ui dividing header">noVNC</h3>
-            <form action="/vnc.html" method="GET" class="ui form">
+            <form action="vnc.html" method="GET" class="ui form">
                 {{if .arbitraryHosts}}
                 {{if .arbitraryPorts}}
                 <div class="two fields">
@@ -138,6 +138,12 @@
         </div>
     </div>
     <script>
+	if (window.location.pathname.length > 2) {
+		document.getElementById("path").value = window.location.pathname.substring(1);
+		if (document.getElementById("path").value[document.getElementById("path").value.length -1] != '/')
+			document.getElementById("path").value = document.getElementById("path").value + "/";
+		document.getElementById("path").value += "vnc";
+	}
         var path = document.getElementById("path");
         var host = document.getElementById("host");
         var port = document.getElementById("port");
